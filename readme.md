@@ -3,7 +3,7 @@ API
 属性  
   
 |属性|说明|类型|默认值|  
-|--|--|--|--|
+|---|--|--|--|
 |v-model|双向绑定的值，数组中的值需要为String类型|Array|[]|
 |placeholder|占位文本|String|-|
 |ready-only|给定的初始值仅可读，不能修改或删除|Boolean|false|
