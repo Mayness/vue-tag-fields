@@ -7,7 +7,8 @@
       </div>
       <Input v-else v-model="active" :inputInitValue="item" :ids="key" @outerValue="outerValue" />
     </div>
-    <Input v-if="touchIndex === null" v-model="active" @outerValue="outerValue" :placeholder="data.length ? '' : placeholder"/>
+    <Input v-if="touchIndex === null" v-model="active" @outerValue="outerValue"
+      :placeholder="data.length ? '' : placeholder" />
   </div>
 </template>
 
@@ -24,24 +25,28 @@ export default {
     },
     placeholder: {
       type: String,
-      required: false,
+      required: false
     },
     'allow-duplicates': {
       type: Boolean,
       required: false,
-      default: true,
+      default: true
     },
     'ready-only': {
       type: Boolean,
       required: false,
-      default: false,
+      default: false
     },
+    'before-change': {
+      type: Function,
+      required: false
+    }
   },
   data() {
     return {
       active: false,
       touchIndex: null,
-      readyOnlyIndex: -1,
+      readyOnlyIndex: -1
     };
   },
   methods: {
@@ -53,23 +58,35 @@ export default {
     focusBox() {
       this.active = true;
     },
-    outerValue({ value, ids }, cb) {
+    async outerValue({ value, ids }, cb) {
       if (!this.allowDuplicates) {
         const index = this.data.indexOf(value);
         // 如果找到有相同的数 并且 该位不是原本位置
         if (index > -1 && index !== ids) return;
-      };
-      if (ids !== undefined) {
-        this.data.splice(ids, 1, value);
-      } else {
-        this.data.push(value);
       }
-      this.touchIndex = null;
-      cb();
+      const pos = ids !== undefined ? ids : this.data.length;
+      const deletes = ids !== undefined ? 1 : 0;
+      if (this.changeData(pos, deletes, value)) {
+        this.touchIndex = null;
+        cb();
+      }
+    },
+    changeData(pos, deletes = 0, value) {
+      if (this.beforeChange) {
+        const flag = this.beforeChange(value, pos);
+        if (flag !== true) return;
+      }
+      if (value) {
+        this.data.splice(pos, deletes, value);
+      } else {
+        this.data.splice(pos, deletes);
+      }
+      this.$emit('change', value, pos, this.data);
+      return true;
     },
     deleteItem(key) {
-      this.data.splice(key, 1);
-    },
+      this.changeData(key, 1);
+    }
   },
   computed: {
     data: {
@@ -84,7 +101,7 @@ export default {
   created() {
     this.readyOnlyIndex = this.readyOnly ? this.value.length : -1;
   },
-  components: { Input },
+  components: { Input }
 };
 </script>
 
@@ -107,7 +124,6 @@ export default {
 }
 .vTag-box {
   position: relative;
-  width: 150px;
   border: 1px solid;
   padding: 2px 4px 3px;
   border: 1px solid #dcdee2;
