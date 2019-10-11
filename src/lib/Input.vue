@@ -56,7 +56,7 @@ export default {
   },
   computed: {
     inputWidth() {
-      return 20 + this.inputValue.length * 15;
+      return 20 + (this.placeholder.length || this.inputValue.length) * 15;
     },
   },
   watch: {
