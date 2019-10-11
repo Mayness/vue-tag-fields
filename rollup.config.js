@@ -8,7 +8,7 @@ export default {
   output: {
     name: 'vue-tag-fields',
     file: 'dist/index.js',
-    format: 'umd'
+    format: 'esm'
   },
   plugins: [
     resolve({ extensions: ['.vue'] }),

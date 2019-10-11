@@ -1,3 +1,18 @@
+## vue-tag-fields
+
+## 使用
+```js
+// Vue.use引入
+import TagFields from 'vue-input-tag';
+Vue.use(TagFields);
+
+// 组件自定义引入
+import { TagFields } from 'vue-input-tag';
+```
+```html
+<tag-fields v-model="data"></tag-fields>
+```
+
 ## API
 
 属性  

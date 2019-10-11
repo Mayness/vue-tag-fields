@@ -4,10 +4,21 @@
   "description": "operable input box with tag in vue",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "jest"
   },
   "peerDependencies": {
     "vue": "2.x"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    }
   },
   "keywords": [
     "tag",
@@ -26,15 +37,19 @@
   "license": "MIT",
   "homepage": "https://github.com/Mayness/vue-tag-fields#readme",
   "devDependencies": {
-    "@babel/core": "^7.6.3",
+    "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
     "rollup": "^1.23.1",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-css-only": "^1.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-vue": "^5.0.1",
     "vue": "^2.6.10",
+    "vue-jest": "^3.0.5",
     "vue-template-compiler": "^2.6.10"
   }
 }
