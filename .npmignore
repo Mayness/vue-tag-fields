@@ -1,3 +1,5 @@
 .history
 .node_modules
 .vscode
+.gitignore
+rollup.config.js
