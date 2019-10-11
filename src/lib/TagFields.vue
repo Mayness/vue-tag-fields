@@ -27,6 +27,10 @@ export default {
       type: String,
       required: false
     },
+    'max-tag-length': {
+      type: Number,
+      required: false,
+    },
     'allow-duplicates': {
       type: Boolean,
       required: false,
@@ -59,13 +63,18 @@ export default {
       this.active = true;
     },
     async outerValue({ value, ids }, cb) {
+      const flag = ids !== undefined;
+      // 校验tag是否超过限制，只校验新增情况
+      if (this.maxTagLength && !flag && this.data.length >= this.maxTagLength) return;
+      // 校验是否有重复tag
       if (!this.allowDuplicates) {
         const index = this.data.indexOf(value);
         // 如果找到有相同的数 并且 该位不是原本位置
         if (index > -1 && index !== ids) return;
       }
-      const pos = ids !== undefined ? ids : this.data.length;
-      const deletes = ids !== undefined ? 1 : 0;
+
+      const pos = flag ? ids : this.data.length;
+      const deletes = flag ? 1 : 0;
       if (this.changeData(pos, deletes, value)) {
         this.touchIndex = null;
         cb();
