@@ -7,7 +7,7 @@
       </div>
       <Input v-else v-model="active" :inputInitValue="item" :ids="key" @outerValue="outerValue" />
     </div>
-    <Input v-if="touchIndex === null" v-model="active" @outerValue="outerValue" />
+    <Input v-if="touchIndex === null" v-model="active" @outerValue="outerValue" :placeholder="data.length ? '' : placeholder"/>
   </div>
 </template>
 
@@ -15,18 +15,27 @@
 import Input from './Input';
 export default {
   props: {
-    readyOnly: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
     value: {
       type: Array,
       required: true,
       validator(value) {
         return value.every(item => typeof item === 'string');
       }
-    }
+    },
+    placeholder: {
+      type: String,
+      required: false,
+    },
+    'allow-duplicates': {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    'ready-only': {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   data() {
     return {
@@ -44,13 +53,19 @@ export default {
     focusBox() {
       this.active = true;
     },
-    outerValue({ value, ids }) {
+    outerValue({ value, ids }, cb) {
+      if (!this.allowDuplicates) {
+        const index = this.data.indexOf(value);
+        // 如果找到有相同的数 并且 该位不是原本位置
+        if (index > -1 && index !== ids) return;
+      };
       if (ids !== undefined) {
         this.data.splice(ids, 1, value);
       } else {
         this.data.push(value);
       }
       this.touchIndex = null;
+      cb();
     },
     deleteItem(key) {
       this.data.splice(key, 1);

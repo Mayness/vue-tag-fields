@@ -1,7 +1,7 @@
 <template>
   <div class="input-box">
     <input ref="input" @blur="blurInput" @keypress.enter="outerValue" v-model="inputValue"
-      :style="{ width: `${inputWidth}px` }" />
+      :style="{ width: `${inputWidth}px` }" :placeholder="placeholder"/>
   </div>
 </template>
 
@@ -21,7 +21,11 @@ export default {
     ids: {
       type: Number,
       required: false
-    }
+    },
+    placeholder: {
+      type: String,
+      required: false,
+    },
   },
   data() {
     return {
@@ -29,15 +33,16 @@ export default {
     };
   },
   methods: {
-    outerValue(e) {
+    outerValue() {
       if (this.inputValue) {
         this.$emit('outerValue', {
           value: this.inputValue,
           ids: this.itemId
+        }, () => {
+          this.inputValue = '';
+          // 防止事件冲突
+          this.itemId = undefined;
         });
-        this.inputValue = '';
-        // 防止事件冲突
-        this.itemId = undefined;
       }
     },
     blurInput() {

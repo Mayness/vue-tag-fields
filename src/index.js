@@ -1,13 +1,13 @@
-import TagSelect from './lib/TagSelect.vue';
+import TagFields from './lib/TagFields.vue';
 
 const option = {
   install(Vue) {
-    Vue.component('TagSelect', TagSelect);
+    Vue.component('TagFields', TagFields);
   }
 }
 
 export default option;
 
 export {
-  TagSelect,
+  TagFields,
 };
