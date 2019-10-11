@@ -1,7 +1,7 @@
 {
   "name": "vue-tag-fields",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.0.3",
+  "description": "operable input box with tag in vue",
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c"
@@ -9,8 +9,22 @@
   "peerDependencies": {
     "vue": "2.x"
   },
+  "keywords": [
+    "tag",
+    "tag-input",
+    "tag-fields",
+    "vue-tag-input"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mayness/vue-tag-fields.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mayness/vue-tag-fields/issues"
+  },
   "author": "mayness",
   "license": "MIT",
+  "homepage": "https://github.com/Mayness/vue-tag-fields#readme",
   "devDependencies": {
     "@babel/core": "^7.6.3",
     "@babel/preset-env": "^7.6.3",
