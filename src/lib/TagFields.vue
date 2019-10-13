@@ -15,7 +15,6 @@
 <script>
 import Input from './Input';
 export default {
-  name: 'TagFields',
   props: {
     value: {
       type: Array,
@@ -73,6 +72,7 @@ export default {
         // 如果找到有相同的数 并且 该位不是原本位置
         if (index > -1 && index !== ids) return;
       }
+
       const pos = flag ? ids : this.data.length;
       const deletes = flag ? 1 : 0;
       if (this.changeData(pos, deletes, value)) {

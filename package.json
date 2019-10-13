@@ -11,9 +11,6 @@
     "vue": "2.x"
   },
   "jest": {
-    "verbose": true,
-    "browser": true,
-    "collectCoverage": true,
     "moduleFileExtensions": [
       "js",
       "vue"
@@ -45,7 +42,6 @@
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.9.0",
-    "flush-promises": "^1.0.2",
     "jest": "^24.9.0",
     "rollup": "^1.23.1",
     "rollup-plugin-babel": "^4.3.3",

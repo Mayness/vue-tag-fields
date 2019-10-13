@@ -2,7 +2,7 @@
 
 ## 使用
 ```js
-// Vue.use引入
+// Vue.use引入
 import TagFields from 'vue-input-tag';
 Vue.use(TagFields);
 

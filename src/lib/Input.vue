@@ -7,7 +7,6 @@
 
 <script>
 export default {
-  name: 'Input',
   props: {
     value: {
       type: Boolean,
@@ -19,14 +18,13 @@ export default {
       required: false,
       default: ''
     },
-    placeholder: {
-      type: String,
-      required: false,
-      default: '',
-    },
     ids: {
       type: Number,
       required: false
+    },
+    placeholder: {
+      type: String,
+      required: false,
     },
   },
   data() {
@@ -58,7 +56,7 @@ export default {
   },
   computed: {
     inputWidth() {
-      return 20 + (this.placeholder.length || this.inputValue.length || 0) * 15;
+      return 20 + (this.placeholder.length || this.inputValue.length) * 15;
     },
   },
   watch: {
@@ -67,9 +65,6 @@ export default {
         this.$refs.input.focus();
       }
     },
-    inputValue(val) {
-      console.log('TODO: TEST1');
-    }
   },
   created() {
     this.inputValue = this.inputInitValue;
