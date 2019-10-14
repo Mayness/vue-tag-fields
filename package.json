@@ -1,6 +1,6 @@
 {
   "name": "vue-tag-fields",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "operable input box with tag in vue",
   "main": "dist/index.js",
   "scripts": {
