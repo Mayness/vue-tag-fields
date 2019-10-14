@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  name: 'Input',
   props: {
     value: {
       type: Boolean,
@@ -25,6 +26,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
+      default: '',
     },
   },
   data() {

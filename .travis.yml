@@ -1,0 +1,36 @@
+language: node_js
+
+sudo: false
+
+branches:
+  only:
+    - master
+    - develop
+
+node_js:
+  - '8'
+
+install:
+  - npm i -g codecov
+  - npm i
+
+script:
+  - npm run test
+
+after_success:
+  - npm run coverage
+  - npm run build
+
+stages:
+ - deploy
+
+jobs:
+  include:
+    - stage: deploy
+      deploy:
+        provider: npm
+        email: "${MY_EMAIL}"
+        api_key: "${NPM_TOKEN}"
+        skip_cleanup: true
+        on:
+          branch: master

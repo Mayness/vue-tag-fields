@@ -1,16 +1,20 @@
 {
   "name": "vue-tag-fields",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "operable input box with tag in vue",
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
-    "test": "jest"
+    "test": "rimraf coverage && jest",
+    "coverage": "codecov -f coverage/*.json"
   },
   "peerDependencies": {
     "vue": "2.x"
   },
   "jest": {
+    "verbose": true,
+    "browser": true,
+    "collectCoverage": true,
     "moduleFileExtensions": [
       "js",
       "vue"
@@ -43,6 +47,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.9.0",
     "jest": "^24.9.0",
+    "rimraf": "^3.0.0",
     "rollup": "^1.23.1",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",

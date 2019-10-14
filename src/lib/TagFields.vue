@@ -1,6 +1,6 @@
 <template>
   <div :class="[ 'vTag-box', active ? 'active' : '' ]" @click="focusBox">
-    <div @click="touchItem(key)" v-for="(item, key) in data" :key="key">
+    <div class="tag-label-box" @click="touchItem(key)" v-for="(item, key) in data" :key="key">
       <div v-if="touchIndex !== key" class="tag-label">
         {{item}}
         <span v-if="readyOnlyIndex <= key" class="delete" @click.stop="deleteItem(key)">×</span>
@@ -15,6 +15,7 @@
 <script>
 import Input from './Input';
 export default {
+  name: 'TagFields',
   props: {
     value: {
       type: Array,
@@ -102,9 +103,6 @@ export default {
       get() {
         return this.value;
       },
-      set(val) {
-        this.$emit('input', val);
-      }
     }
   },
   created() {
