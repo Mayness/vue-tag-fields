@@ -1,4 +1,19 @@
-## vue-tag-fields
+# vue-tag-fields
+
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Test coverage][codecov-image]][codecov-url]
+
+
+[npm-image]: https://img.shields.io/npm/v/vue-tag-fields.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/vue-tag-fields
+[travis-image]: https://img.shields.io/travis/Mayness/vue-tag-fields.svg
+[travis-url]: https://travis-ci.org/Mayness/vue-tag-fields
+[codecov-image]: https://img.shields.io/codecov/c/github/Mayness/vue-tag-fields.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/Mayness/vue-tag-fields?branch=master
+
+## 简介
+带tag标签的可增删改的vue input输入框样式的组件
 
 ## 使用
 ```js
