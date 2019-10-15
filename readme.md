@@ -28,6 +28,8 @@ import { TagFields } from 'vue-input-tag';
 ```html
 <tag-fields v-model="data"></tag-fields>
 ```
+新增tag：输入完成后回车增加  
+修改tag：点击tag出现输入框，修改完成后回车确定修改。如果输入框失去焦点，则数据还原，更改无效   
 
 ## API
 
