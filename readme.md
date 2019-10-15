@@ -14,6 +14,7 @@
 
 ## 简介
 带tag标签的可增删改的vue input输入框样式的组件
+<img src="img/demo.gif"/>
 
 ## 使用
 ```js
