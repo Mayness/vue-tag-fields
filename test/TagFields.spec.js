@@ -9,6 +9,12 @@ function addTag(wrapper, tagName) {
   input.trigger('keypress.enter');
 }
 
+function changeTap(InputWrapper, value) {
+  InputWrapper.element.value = value;
+  InputWrapper.trigger('input');
+  InputWrapper.trigger('keypress.enter');
+}
+
 describe('TagFields.vue', () => {
   it('add a tag', () => {
     const wrapper = mount(TagFields, {
@@ -42,9 +48,7 @@ describe('TagFields.vue', () => {
     labels.trigger('click');
     let labelInput = wrapper.find('.tag-label-box input');
     expect(labelInput.name()).toBe('input');
-    labelInput.element.value = 'change tag 1';
-    labelInput.trigger('input');
-    labelInput.trigger('keypress.enter');
+    changeTap(labelInput, 'change tag 1');
     expect(wrapper.vm.value).toEqual(['change tag 1']);
 
     labels = wrapper.find('.tag-label');
