@@ -2,6 +2,9 @@
 .node_modules
 .vscode
 .gitignore
-img
+.babelrc
+.travis.yml
+test/
+img/
 coverage
 rollup.config.js
