@@ -1,11 +1,12 @@
 import TagFields from './lib/TagFields.vue';
 
-export default {
+const Option = {
   install(Vue) {
     Vue.component('TagFields', TagFields);
   }
 }
 
 export {
+  Option as default,
   TagFields,
 };
