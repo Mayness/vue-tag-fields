@@ -17,6 +17,8 @@
 <img src="img/demo.gif"/>
 
 ## 使用
+[![NPM](https://nodei.co/npm/vue-tag-fields.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/vue-tag-fields/)
+
 ```js
 // Vue.use引入
 import TagFields from 'vue-tag-fields';
