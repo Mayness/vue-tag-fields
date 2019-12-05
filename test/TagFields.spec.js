@@ -52,7 +52,7 @@ describe('TagFields.vue', () => {
       expect(labelInput.name()).toBe('input');
       changeTap(labelInput, 'change tag 1');
       expect(wrapper.vm.value).toEqual(['change tag 1']);
-      
+      done();
       // labels = wrapper.find('.tag-label');
       // labels.trigger('click');
       // Vue.nextTick(() => {
@@ -61,7 +61,7 @@ describe('TagFields.vue', () => {
       //   labelInput.trigger('input');
       //   labelInput.trigger('blur');
       //   expect(wrapper.vm.value).toEqual(['change tag 1']);
-      //   done();
+        
       // });
     });
   });
