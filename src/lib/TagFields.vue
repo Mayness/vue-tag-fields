@@ -5,7 +5,7 @@
         {{item}}
         <span v-if="readyOnlyIndex <= key" class="delete" @click.stop="deleteItem(key)">×</span>
       </div>
-      <Input v-else v-model="active" :inputInitValue="item" :ids="key" @outerValue="outerValue" />
+      <Input v-else v-model="active" :inputInitValue="item" :ids="key" @outerValue="outerValue" :onblurAppend="onblurAppend" />
     </div>
     <Input v-if="touchIndex === null" v-model="active" @outerValue="outerValue" :onblurAppend="onblurAppend"
       :placeholder="data.length ? '' : placeholder" />
