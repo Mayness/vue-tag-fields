@@ -7,7 +7,7 @@
       </div>
       <Input v-else v-model="active" :inputInitValue="item" :ids="key" @outerValue="outerValue" />
     </div>
-    <Input v-if="touchIndex === null" v-model="active" @outerValue="outerValue"
+    <Input v-if="touchIndex === null" v-model="active" @outerValue="outerValue" :onblurAppend="onblurAppend"
       :placeholder="data.length ? '' : placeholder" />
   </div>
 </template>
@@ -38,6 +38,11 @@ export default {
       default: true
     },
     'ready-only': {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    'onblur-append': {
       type: Boolean,
       required: false,
       default: false

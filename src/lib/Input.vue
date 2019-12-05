@@ -14,6 +14,11 @@ export default {
       required: false,
       default: false
     },
+    onblurAppend: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     inputInitValue: {
       type: String,
       required: false,
@@ -50,9 +55,9 @@ export default {
     blurInput() {
       // 如果是当前已存在的label失去焦点，则还原之前数据
       if (this.itemId !== undefined) {
-        this.inputValue = this.inputInitValue;
+        if (!this.onblurAppend) this.inputValue = this.inputInitValue;
         this.outerValue();
-      }
+      } 
       this.$emit('input', false);
     },
   },
