@@ -16,6 +16,10 @@ function changeTap(InputWrapper, value) {
   InputWrapper.trigger('keypress.enter');
 }
 
+function sleep() {
+  return new Promise(resolve => Vue.nextTick(resolve));
+}
+
 describe('TagFields.vue', () => {
   it('add a tag', () => {
     const wrapper = mount(TagFields, {
@@ -35,11 +39,11 @@ describe('TagFields.vue', () => {
     });
     const labels = wrapper.findAll('.tag-label');
     expect(labels.length).toBe(2);
-    // labels.at(1).find('.delete').trigger('click');
-    // expect(wrapper.vm.value).toEqual(['tag 1']);
+    labels.at(1).find('.delete').trigger('click');
+    expect(wrapper.vm.value).toEqual(['tag 1']);
   });
 
-  it('change a tag', done => {
+  it('change a tag', async done => {
     const wrapper = mount(TagFields, {
       propsData: {
         value: ['tag 1']
@@ -47,23 +51,21 @@ describe('TagFields.vue', () => {
     });
     let labels = wrapper.find('.tag-label');
     labels.trigger('click');
-    Vue.nextTick(() => {
-      let labelInput = wrapper.find('.tag-label-box input');
-      expect(labelInput.name()).toBe('input');
-      changeTap(labelInput, 'change tag 1');
-      expect(wrapper.vm.value).toEqual(['change tag 1']);
-      done();
-      // labels = wrapper.find('.tag-label');
-      // labels.trigger('click');
-      // Vue.nextTick(() => {
-      //   labelInput = wrapper.find('.tag-label-box input');
-      //   labelInput.element.value = 'rechange tag 1';
-      //   labelInput.trigger('input');
-      //   labelInput.trigger('blur');
-      //   expect(wrapper.vm.value).toEqual(['change tag 1']);
-        
-      // });
-    });
+    await sleep();
+    let labelInput = wrapper.find('.tag-label-box input');
+    expect(labelInput.name()).toBe('input');
+    changeTap(labelInput, 'change tag 1');
+    expect(wrapper.vm.value).toEqual(['change tag 1']);
+    await sleep();
+    labels = wrapper.find('.tag-label');
+    labels.trigger('click');
+    await sleep();
+    labelInput = wrapper.find('.tag-label-box input');
+    labelInput.element.value = 'rechange tag 1';
+    labelInput.trigger('input');
+    labelInput.trigger('blur');
+    expect(wrapper.vm.value).toEqual(['change tag 1']);
+    done();
   });
 
   it('test max-tag-length property', () => {
@@ -115,5 +117,23 @@ describe('TagFields.vue', () => {
     expect(wrapper.vm.value).toEqual([]);
     addTag(wrapper, 'tag 2');
     expect(wrapper.vm.value).toEqual(['tag 2']);
+  });
+
+  it('test onblur-append property', async done => {
+    const wrapper = mount(TagFields, {
+      propsData: {
+        value: ['tag 1'],
+        'onblur-append': true
+      }
+    });
+    let labels = wrapper.find('.tag-label');
+    labels.trigger('click');
+    await sleep();
+    let labelInput = wrapper.find('.tag-label-box input');
+    labelInput.element.value = 'rechange tag 1';
+    labelInput.trigger('input');
+    labelInput.trigger('blur');
+    expect(wrapper.vm.value).toEqual(['rechange tag 1']);
+    done();
   });
 });
