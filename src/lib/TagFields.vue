@@ -1,9 +1,9 @@
 <template>
-  <div :class="[ 'vTag-box', active ? 'active' : '' ]" @click="focusBox">
+  <div :class="[ 'vTag-box', disabled ? 'disabled' : active ? 'active' : '' ]" @click="focusBox">
     <div class="tag-label-box" @click="touchItem(key)" v-for="(item, key) in data" :key="key">
       <div v-if="touchIndex !== key" class="tag-label">
         {{item}}
-        <span v-if="readyOnlyIndex <= key" class="delete" @click.stop="deleteItem(key)">×</span>
+        <span v-if="!disabled && readyOnlyIndex <= key" class="delete" @click.stop="deleteItem(key)">×</span>
       </div>
       <Input v-else v-model="active" :inputInitValue="item" :ids="key" @outerValue="outerValue" :onblurAppend="onblurAppend" />
     </div>
@@ -27,6 +27,10 @@ export default {
     placeholder: {
       type: String,
       required: false
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
     },
     'max-tag-length': {
       type: Number,
@@ -56,7 +60,7 @@ export default {
     return {
       active: false,
       touchIndex: null,
-      readyOnlyIndex: -1
+      readyOnlyIndex: -1,
     };
   },
   methods: {
@@ -65,8 +69,12 @@ export default {
         this.touchIndex = key;
       }
     },
-    focusBox() {
-      this.active = true;
+    focusBox(e) {
+      if (this.disabled) {
+        e.stopPropagation();
+      } else {
+        this.active = true;
+      }
     },
     async outerValue({ value, ids }, cb) {
       const flag = ids !== undefined;
@@ -145,11 +153,21 @@ export default {
 .vTag-box > div {
   display: inline-block;
 }
-.vTag-box:hover {
+.vTag-box:not(.disabled):hover {
   border-color: #57a3f3;
 }
 .vTag-box.active {
   border-color: #57a3f3;
   box-shadow: 0 0 0 2px rgba(45, 140, 240, 0.2);
+}
+.vTag-box.disabled::after {
+  content: '';
+  cursor: not-allowed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .3);
 }
 </style>
