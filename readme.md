@@ -43,7 +43,7 @@ import { TagFields } from 'vue-tag-fields';
 |---|--|--|--|
 |v-model|双向绑定的值，数组中的值需要为``String``类型|Array|[]|
 |placeholder|占位文本|String|-|
-|disabled|是否禁用|Boolean|-|
+|disabled|是否禁用|Boolean|false|
 |ready-only|给定的初始值仅可读，不能修改或删除|Boolean|false|
 |allow-duplicates|是否允许出现重复的值，如果重复则无法添加|Boolean|true|
 |onblur-append|输入框失去焦点时，是否添加当前输入字符|Boolean|false|
