@@ -34,13 +34,13 @@ describe('TagFields.vue', () => {
   it('delete a tag', () => {
     const wrapper = mount(TagFields, {
       propsData: {
-        value: ['tag 1', 'tag 2']
+        value: [123, 456]
       }
     });
     const labels = wrapper.findAll('.tag-label');
     expect(labels.length).toBe(2);
     labels.at(1).find('.delete').trigger('click');
-    expect(wrapper.vm.value).toEqual(['tag 1']);
+    expect(wrapper.vm.value).toEqual([ 123 ]);
   });
 
   it('change a tag', async done => {

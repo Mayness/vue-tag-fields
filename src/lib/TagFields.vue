@@ -20,9 +20,6 @@ export default {
     value: {
       type: Array,
       required: true,
-      validator(value) {
-        return value.every(item => typeof item === 'string');
-      }
     },
     placeholder: {
       type: String,
