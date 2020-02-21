@@ -20,7 +20,7 @@ export default {
       default: false,
     },
     inputInitValue: {
-      type: String,
+      type: [ String, Number ],
       required: false,
       default: ''
     },

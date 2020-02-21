@@ -122,7 +122,7 @@ describe('TagFields.vue', () => {
   it('test onblur-append property', async done => {
     const wrapper = mount(TagFields, {
       propsData: {
-        value: ['tag 1'],
+        value: [ 123 ],
         'onblur-append': true
       }
     });
@@ -130,10 +130,10 @@ describe('TagFields.vue', () => {
     labels.trigger('click');
     await sleep();
     let labelInput = wrapper.find('.tag-label-box input');
-    labelInput.element.value = 'rechange tag 1';
+    labelInput.element.value = 456;
     labelInput.trigger('input');
     labelInput.trigger('blur');
-    expect(wrapper.vm.value).toEqual(['rechange tag 1']);
+    expect(wrapper.vm.value).toEqual(['456']);
     done();
   });
 });
